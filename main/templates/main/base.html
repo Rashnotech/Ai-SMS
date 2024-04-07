@@ -10,15 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/header.css' %}">
     <link rel="stylesheet" href="{% static 'main/css/body.css' %}">
-    <title>Ai-SMS</title>
+    <title>{% block title %} {% endblock title %}</title>
 </head>
 <body>
-    {% include 'main/header.html' %}
-        {% block content %}
-        {% endblock content %}
-    {% include 'main/footer.html' %}
+    {% block content %}
+    {% endblock content %}
 </body>
 </html>

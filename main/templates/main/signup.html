@@ -1,0 +1,82 @@
+{% extends 'main/base.html' %}
+    {% block title %}
+        Register Account
+    {% endblock title %}
+{% block content %}
+    <section class="flex items-center justify-between h-[100vh]">
+        <section class="w-1/2 hidden md:block">
+            <img src="../static/main/images/server_threat.jpg" alt="banner">
+        </section>
+        <section class="md:w-1/2">
+
+            <form action="" method="post" class="grid grid-cols-2 font-['Inter'] gap-4 p-4 md:pl-12 items-center">
+                <h2 class="text-4xl font-['Mulish'] font-bold">Sign up</h2>
+                <p class="text-sm text-slate-700 text-right">Already have an account? <br> <a href="login">Login</a></p>
+                <input
+                        type="text"
+                        name="firstname"
+                        placeholder="First Name"
+                        class="border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="firstname">
+                <input
+                        type="text"
+                        name="lastname"
+                        placeholder="Last Name"
+                        class="border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="lastname">
+                <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        class="border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="email">
+                <input
+                        type="tel"
+                        name="mobile"
+                        placeholder="Telephone"
+                        class="border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="mobile">
+                <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        class="border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="password">
+                <input
+                        type="password"
+                        name="confirm"
+                        placeholder="Confirm password"
+                        class="border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="confirm">
+                <input
+                        type="text"
+                        name="job_title"
+                        placeholder="Job Title"
+                        class="border rounded-md text-sm col-span-2 text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="job_title">
+                <input
+                        type="text"
+                        name="company"
+                        placeholder="Company"
+                        class="border rounded-md col-span-2 text-sm text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="company">
+                <input
+                        type="text"
+                        name="country"
+                        placeholder="Enter country"
+                        autocapitalize="sentences"
+                        class="border rounded-md text-sm col-span-2 text-slate-600 focus:transition-all outline-none px-4 py-2"
+                        id="country">
+                <p class="text-xs col-span-2 text-slate-600">
+                    By filling out this form and clicking the submit button you are
+                    agreeing to receive email communications from AI-SMS regarding cybersecurity events,
+                    webinars, research, and more.
+                </p>
+                <input
+                        type="submit"
+                        value="Register"
+                        class="rounded-md col-span-2 border bg-teal-600 text-white px-4 py-2 text-sm">
+            </form>
+        </section>
+    </section>
+{% endblock content %}
