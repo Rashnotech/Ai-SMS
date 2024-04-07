@@ -1,0 +1,12 @@
+header nav ul li {
+    margin-right: 1.5em;
+}
+
+header {
+    font-family: 'Mulish';
+}
+
+header nav button {
+    background: rgb(2,0,36);
+    background: linear-gradient(37deg, rgba(2,0,36,1) 0%, rgba(4,110,89,1) 62%, rgba(0,227,237,1) 100%);
+}

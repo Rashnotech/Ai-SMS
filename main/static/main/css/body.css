@@ -1,0 +1,13 @@
+body {
+    font-family: 'Inter';
+    padding: 0 2em;
+}
+
+main {
+    background: rgb(2,0,36);
+    background: linear-gradient(37deg, rgba(2,0,36,1) 0%, rgba(4,110,89,1) 62%, rgba(0,227,237,1) 100%);
+}
+main h1 {
+    font-family: 'Mulish';
+    font-weight: 800;
+}
