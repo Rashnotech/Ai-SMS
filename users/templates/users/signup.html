@@ -1,0 +1,39 @@
+{% extends 'main/base.html' %}
+    {% block title %}
+        Register Account
+    {% endblock title %}
+{% load crispy_forms_tags %}
+{% load crispy_tailwind %}
+{% block content %}
+    <section class="flex items-center justify-between h-[100vh]">
+        <section class="w-1/2 hidden md:block">
+            <img src="../static/main/images/server_threat.jpg" alt="banner">
+        </section>
+        <section class="md:w-1/2">
+            <form method="POST" class="grid grid-cols-2 font-['Inter'] gap-4 p-4 md:pl-12 items-center">
+                {% csrf_token %}
+                <h2 class="text-4xl font-['Mulish'] font-bold">Sign up</h2>
+                <p class="text-sm text-slate-700 text-right">Already have an account? <br> <a href="login">Login</a></p>
+                {{ form.non_field_errors }}
+
+                {% for field in form.visible_fields %}
+                    <div class="text-sm text-slate-600 w-full flex flex-col font-['Inter']">
+                        {{ field.label_tag }}
+                        {{ field|tailwindcss:"border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-3 py-2" }}
+                        <small class="text-red-600 text-xs">{{ field.errors }}</small>
+                    </div>
+                {% endfor %}
+
+                <p class="text-xs col-span-2 text-slate-600">
+                    By filling out this form and clicking the submit button you are
+                    agreeing to receive email communications from AI-SMS regarding cybersecurity events,
+                    webinars, research, and more.
+                </p>
+                <input
+                        type="submit"
+                        value="Register"
+                        class="rounded-md col-span-2 border bg-teal-600 text-white px-4 py-2 text-sm">
+            </form>
+        </section>
+    </section>
+{% endblock content %}

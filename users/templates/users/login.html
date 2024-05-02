@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+    {% block title %}
+        login
+    {% endblock title %}
+{% load crispy_forms_tags %}
+{% load crispy_tailwind %}
+{% block content %}
+    <section class="flex items-center justify-between h-[100vh]">
+        <section class="w-1/2 hidden md:block">
+            <img src="../static/main/images/secured.jpg" alt="banner">
+        </section>
+        <section class="w-full md:w-1/2">
+            <form method="post" class="grid grid-cols-2 font-['Inter'] gap-4 p-4 md:pl-12 items-center">
+                {% csrf_token %}
+
+                <h2 class="text-3xl font-['Mulish'] font-bold">Login</h2>
+                <p class="text-sm text-slate-700 text-right">Don't have an account? <br>
+                    <a href="register">Register</a>
+                </p>
+                {% for field in form.visible_fields %}
+                    <div class="text-sm text-slate-600 col-span-2 w-full flex flex-col font-['Inter']">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        <small class="text-red-600 text-xs">{{ field.errors }}</small>
+                    </div>
+                {% endfor %}
+                <p class="text-sm col-span-2 text-blue-600 text-right">
+                    <a href="">Forget password?</a>
+                </p>
+                <input
+                        type="submit"
+                        value="Login"
+                        class="rounded-md col-span-2 border bg-teal-600 text-white px-4 py-3 text-sm">
+            </form>
+        </section>
+    </section>
+{% endblock content %}
