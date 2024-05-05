@@ -12,18 +12,32 @@
         <section class="w-full md:w-1/2">
             <form method="post" class="grid grid-cols-2 font-['Inter'] gap-4 p-4 md:pl-12 items-center">
                 {% csrf_token %}
-
+                {% if form.non_field_errors %}
+                    <div class="col-span-2 bg-orange-300/30 text-orange-400 px-4 py-2 rounded-sm text-sm">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
                 <h2 class="text-3xl font-['Mulish'] font-bold">Login</h2>
                 <p class="text-sm text-slate-700 text-right">Don't have an account? <br>
                     <a href="register">Register</a>
                 </p>
-                {% for field in form.visible_fields %}
-                    <div class="text-sm text-slate-600 col-span-2 w-full flex flex-col font-['Inter']">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        <small class="text-red-600 text-xs">{{ field.errors }}</small>
-                    </div>
-                {% endfor %}
+                <div class="text-sm text-slate-600 col-span-2 w-full flex flex-col font-['Inter']">
+                    {{ form.email.label_tag }}
+                    <input class="border rounded-md col-span-2 text-sm text-slate-600 focus:transition-all outline-none px-4 py-3"
+                           placeholder = "someone@workplace.com"
+                           type="email" name="email"
+                           value="{{ form.email.value|default:'' }}">
+                    <small class="text-red-600 text-xs">{{ form.email.errors }}</small>
+                </div>
+                <div class="text-sm text-slate-600 col-span-2 w-full flex flex-col font-['Inter']">
+                    {{ form.password.label_tag }}
+                    <input class="border rounded-md col-span-2 text-sm text-slate-600 focus:transition-all outline-none px-4 py-3"
+                           type="password"
+                           placeholder="********"
+                           name="password"
+                           value="{{ form.password.value|default:'' }}">
+                    <small class="text-red-600 text-xs">{{ form.password.errors }}</small>
+                </div>
                 <p class="text-sm col-span-2 text-blue-600 text-right">
                     <a href="">Forget password?</a>
                 </p>

@@ -57,4 +57,9 @@ $('#toggler').on('click', function (event) {
     }
 });
 
+$('#get_started').on('click', function () {
+    $('#server').removeClass('hidden');
+    $('#started').addClass('hidden');
+})
+
 //$(document).on('load');

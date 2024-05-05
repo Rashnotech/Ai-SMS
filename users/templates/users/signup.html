@@ -14,13 +14,26 @@
                 {% csrf_token %}
                 <h2 class="text-4xl font-['Mulish'] font-bold">Sign up</h2>
                 <p class="text-sm text-slate-700 text-right">Already have an account? <br> <a href="login">Login</a></p>
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.tags == 'error' %}
+                            <div class="col-span-2 bg-orange-300/50 text-orange-600 px-4 py-2 rounded-sm text-sm">
+                                {{ message }}
+                            </div>
+                        {% else %}
+                            <div class="col-span-2 bg-green-300/50 text-green-600 px-4 py-2 rounded-sm text-sm">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
                 {{ form.non_field_errors }}
 
                 {% for field in form.visible_fields %}
                     <div class="text-sm text-slate-600 w-full flex flex-col font-['Inter']">
                         {{ field.label_tag }}
                         {{ field|tailwindcss:"border rounded-md text-sm text-slate-600 focus:transition-all outline-none px-3 py-2" }}
-                        <small class="text-red-600 text-xs">{{ field.errors }}</small>
+                        <small class="text-red-600 col-span-2 text-xs">{{ field.errors }}</small>
                     </div>
                 {% endfor %}
 
