@@ -62,4 +62,6 @@ $('#get_started').on('click', function () {
     $('#started').addClass('hidden');
 })
 
-//$(document).on('load');
+$(document).ready(function () {
+    $('#loader').fadeOut('slow');
+});

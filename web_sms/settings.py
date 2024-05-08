@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
+    'rest_framework',
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
@@ -46,6 +48,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_REDIRECT_URL = '/app'
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'main.middleware.AuthenticationMiddleware',
 ]
 
 ROOT_URLCONF = 'web_sms.urls'
@@ -128,3 +132,22 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:8000",
+]
+CORS_ALLOW_METHODS = [
+    'GET',
+    'POST',
+    'PUT',
+    'PATCH',
+    'DELETE',
+    'OPTIONS',
+]
+CORS_ALLOW_HEADERS = [
+    'Accept',
+    'Content-Type',
+    'Authorization',
+]
+CORS_ALLOW_CREDENTIALS = True  # If your frontend sends credentials (e.g., cookies)

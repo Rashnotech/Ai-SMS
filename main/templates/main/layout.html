@@ -13,11 +13,15 @@
     <link rel="stylesheet" href="{% static 'main/css/app.css' %}">
     <title>{% block title %} {% endblock title %}</title>
 </head>
-<body>
+<body class="relative">
+    <div id="loader" class="w-full h-[100vh] bg-white absolute z-50 flex items-center justify-center">
+        <img src="../static/main/images/loader.gif" class="w-1/2"  alt="Loader">
+    </div>
     {% block content %}
     {% endblock content %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{% static 'main/js/jquery.min.js' %}"></script>
     <script src="{% static 'main/js/script.js' %}"></script>
+    <script src="{% static 'main/js/promise.js' %}" type="module"></script>
 </body>
 </html>

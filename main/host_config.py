@@ -1,12 +1,15 @@
 """a module that try connecting to server"""
 import paramiko
+from .models import Server
 
 
 command = "df"
 
-host = "IP_ADDRESS"
-username = "USER_ACCOUNT"
-password = "YOUR_PASSWORD"
+server = Server.get_server()
+
+host = server.ipaddress
+username = server.hostname
+password = server.passphrase
 
 
 client = paramiko.client.SSHClient()

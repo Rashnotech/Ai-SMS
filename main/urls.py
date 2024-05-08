@@ -5,12 +5,12 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.index),
-    path("app", views.app),
-    path("dashboard", views.dashboard),
-    path("services", views.services),
-    path("firewall", views.firewall),
-    path("network", views.network),
-    path("app/profile", views.profile),
-    path("app/settings", views.settings)
+    path("", views.app, name='app'),
+    path('add_server', views.add_server, name='add_server_api'),
+    path("dashboard", views.dashboard, name='dashboard'),
+    path("services", views.services, name='services'),
+    path("firewall", views.firewall, name='firewall'),
+    path("network", views.network, name='network'),
+    path("profile", views.profile, name='profile'),
+    path("settings", views.settings, name='settings')
 ]
