@@ -1,9 +1,11 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
 from .serializers import ServerSerializer
-from rest_framework.decorators import api_view
+from .models import Server
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
 from rest_framework import status
 
 
@@ -18,22 +20,28 @@ def add_server(request):
         serializer = ServerSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=request.user)
-            print(request.user)
-            print(request.session['user_email'])
-            return JsonResponse(
+            return Response(
                 {'message': 'Server added successfully.'},
                 status=status.HTTP_201_CREATED
             )
         else:
-            return JsonResponse(
+            return Response(
                 {'error': 'Data is not valid.'},
                 status=status.HTTP_400_BAD_REQUEST
             )
     else:
-        return JsonResponse(
+        return Response(
             {'error': 'Method not allowed.'},
             status=status.HTTP_405_METHOD_NOT_ALLOWED
         )
+
+
+@api_view(['GET'])
+def get_server(request):
+    """a function that get all the information about server"""
+    server = Server.objects.all()
+    serializer = ServerSerializer(server, many=True)
+    return JsonResponse({'my_server': serializer.data})
 
 
 @login_required

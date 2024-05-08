@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     path("", views.app, name='app'),
     path('add_server', views.add_server, name='add_server_api'),
+    path('get_server', views.get_server, name='fetch_server'),
     path("dashboard", views.dashboard, name='dashboard'),
     path("services", views.services, name='services'),
     path("firewall", views.firewall, name='firewall'),

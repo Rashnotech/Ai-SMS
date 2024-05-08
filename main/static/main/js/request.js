@@ -1,7 +1,13 @@
 const PostRequest = (url, data) => {
     return fetch(url, {
         method: 'POST',
-        body: data,
+        body: JSON.stringify(data),
+    });
+}
+
+export const GetRequest = (url) => {
+    return fetch(url, {
+        method: 'GET'
     });
 }
 

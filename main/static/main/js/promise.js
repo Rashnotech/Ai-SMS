@@ -1,8 +1,17 @@
-import PostRequest from './request.js';
+import PostRequest, { GetRequest } from './request.js';
 
 const add = (url, data) => {
     return new Promise((resolve, reject) => {
         PostRequest(url, data)
+        .then(response => response.json())
+        .then(data => resolve(data))
+        .catch(error => reject(error))
+    })
+}
+
+const getdata = (url) => {
+    return new Promise((resolve, reject) => {
+        GetRequest(url)
         .then(response => response.json())
         .then(data => resolve(data))
         .catch(error => reject(error))
@@ -19,14 +28,31 @@ form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const port = 8000
     const url = `http://localhost:${port}/app/add_server`
-    const csrfToken = document.querySelector("input[name='csrfmiddlewaretoken']").value;
-    const data = new FormData();
-    data.append('csrfmiddlewaretoken', csrfToken);
-    data.append('hostname', getValue('hostname'));
-    data.append('pass_phrase', getValue('pass'));
-    data.append('public_key', getValue('key'));
-    data.append('ipaddress', getValue('address'));
+    const data = {
+        'hostname': getValue('hostname'),
+        'passphrase': getValue('pass'),
+        'public_key': getValue('key'),
+        'ipaddress': getValue('address')
+    };
 
     const response = await PostRequest(url, data);
-    console.log(response);
-})
+    if (response.ok) {
+        form.parent().removeClass('block')
+        form.parent().addClass('hidden')
+        $('#success').removeClass('hidden')
+    }
+});
+
+
+(async () => {
+    const port = 8000;
+    const url = `http://localhost:${port}/app/get_server`;
+    const res = await GetRequest(url);
+
+    if (res.ok) {
+        const href = '/app/dashboard'
+        $('#container').remove()
+        $('nav ul li').first().addClass('bg-blue-700 text-white rounded-sm');
+        $('#content').load(href).hide().fadeIn('slow');
+    }
+})();
